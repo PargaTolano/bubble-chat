@@ -1,0 +1,30 @@
+:root{
+    --background-color: #F6FFFD;
+    --main-color:       #9DFFF2;
+    --accent1-color:    #FF51C1;
+    --accent2-color:    #FFB151;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html, body, #root{
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+}
+
+#root{
+    overflow: hidden;
+}
+
+/*
+    COLOR SCHEME
+
+    FLASHY
+    #F7FFFE,#ABFFFB,#FFABAE
+
+    COLORFUL
+    #51FFF6,#ABFFFB,#FF51C1,#FFB151
+*/

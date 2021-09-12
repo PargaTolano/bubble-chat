@@ -1,0 +1,49 @@
+.bubbleContainer{
+    position:           relative;
+    z-index:            1;
+}
+
+.mainBubble{
+    position:           absolute;
+    display:            flex;
+    top:                0;
+    left:               50%;
+    width:              500px;
+    height:             500px;
+    padding-bottom:     30px;
+    justify-content:    center; 
+    align-items:        flex-end;
+    background-color:   var(--accent2-color);
+    border-radius:      50%;
+    transition:         transform 0.4s ease, width 0.4s ease, height 0.4s ease;
+    transform:          translate(-50%, -90%);
+}
+
+.mainBubble:hover,
+.mainBubble:focus{
+    width:              700px;
+    transform:          translate(-50%, -80%);
+}
+
+.chatBtn{
+    font-size:          26px;
+    padding:            1ex 4ch;
+    border:             2px solid var(--accent1-color);
+    border-radius:      30px;
+    outline:            none;
+    color:              var(--accent1-color);
+    background-color:   rgba( 255, 255, 255, 0.4);
+    transition:         border-color 0.3s ease, color 0.3s ease, opacity 0.5s ease;
+    opacity:            0;
+    cursor:             pointer;    
+}
+
+.mainBubble:hover .chatBtn,
+.mainBubble:focus .chatBtn{
+    opacity:            1;
+}
+
+.chatBtn:hover{
+    border-color:   white;
+    color:          white;
+}

@@ -1,0 +1,260 @@
+.trailContainer{
+    position:   fixed;
+    width:      100vw;
+    height:     100vh;
+    overflow:   hidden;
+}
+
+.bubbleTrail{
+    position:               absolute;
+    top:                    50%;
+    left:                   50%;
+    background-color:       var(--main-color);
+    border-radius:          50%;
+    animation:              bubble-trail 1.0s ease 1.4s;
+    animation-fill-mode:    both;
+    transform:              translate(-50%,-50%);
+}
+
+.bubbleTrail:nth-child(2){
+    background-color:       var(--accent2-color);
+    animation-delay:        1.5s;
+}
+
+.bubbleTrail:nth-child(3){
+    background-color:       var(--accent1-color);
+    animation-delay:        1.6s;
+}
+
+.chatBubble{
+    position:                   absolute;
+    display:                    inline-block;
+    top:                        0;
+    left:                       50%;
+    width:                      80px;
+    height:                     80px;
+    background-color:           var(--main-color);
+    border-radius:              50%;
+    box-shadow:                 0px 0px 10px rgba(0,0,0,0.15);
+    transform:                  translate(-50%, -100px);
+    overflow:                   hidden;
+    z-index:                    0;
+}
+
+.chatBubbleForwards{
+    animation:              enter-animation 1.4s ease;
+    animation-fill-mode:    forwards;
+}
+
+.chatBubbleReversed{
+    animation:              exit-animation 1.4s ease;
+    animation-fill-mode:    forwards;
+}
+
+.backgroundBubble{
+    position:                   absolute;
+    top:                        0;
+    left:                       0;
+    bottom:                     0;
+    right:                      0;
+    background-color: 	        #F7FFFE;
+    border-radius:              50%;
+    transform:                  scale(0.0);
+}
+
+.chatBubbleForwards .backgroundBubble{
+    animation:              enter-bubble-background 0.4s ease 1.4s;
+    animation-fill-mode:    forwards;
+}
+
+.chatBubbleReversed .backgroundBubble{
+    animation:              exit-bubble-background  0.4s ease;
+    animation-fill-mode:    forwards;
+}
+
+.messageForm{
+    display:                inline-block;
+    position:               absolute;
+    bottom:                 0;
+    width:                  100%;
+    padding:                20px 50px;
+    background-color:       var(--accent1-color);
+    animation:              enter-messageForm 0.3s ease 2.0s;
+    animation-fill-mode:    both;
+}
+
+.messageText{
+    position:               relative;
+    color:                  white;
+    width:                  100%;
+    min-height:             50px;
+    border:                 0;
+    padding:                0;
+    outline:                none;
+    background-color:       transparent;
+    font-size:              14px;
+    resize:                 none;
+}
+
+.messageText::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255,255,255,0.6);
+    opacity: 1; /* Firefox */
+}
+  
+.messageText:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgba(255,255,255,0.6);
+}
+  
+.messageText::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(255,255,255,0.6);
+}
+
+.sendIcon{
+    position:       absolute;
+    left:           50%;
+    top:            50%;
+    margin:         0;
+    color:          white;
+    font-size:      18px!important;
+    transform:      translate( -50%, -50%);
+}
+
+.sendIconContainer{
+    position:           absolute;
+    top:                10px;
+    right:              10px;
+    width:              40px;
+    height:             40px;
+    border:             none;
+    outline:            none;
+    border-radius:      50%;
+    background-color:   rgba(255,255,255,0);
+    cursor:             pointer;
+    transition:         background-color 0.5s ease;
+}
+
+.sendIconContainer:hover{
+    background-color: rgba(255,255,255,0.2);
+}
+
+.sendIconContainer:active{
+    background-color: rgba(255,255,255,0.4);
+}
+
+@keyframes enter-animation {
+
+    30%{
+        width:                      80px;
+        height:                     80px;
+        transform:                  translate(-50%, 100px);
+        border-radius:              50%;
+    }
+
+    50%{
+        width:                      80px;
+        height:                     80px;
+    }
+
+    80%{
+        width:                      40px;
+        height:                     40px;
+        border-radius:              50%;
+    }
+
+    90%{
+        width:  40px;
+        height: 40px;
+    }
+
+    100%{
+        width:          500px;
+        height:         500px;
+        border-radius:  60px;
+        transform:                  translate(-50%, 100px);
+    }
+}
+
+@keyframes exit-animation {
+    
+    0%{
+        width:                      500px;
+        height:                     500px;
+        border-radius:              60px;
+        transform:                  translate(-50%, 100px);
+    }
+
+    10%{
+        width:  40px;
+        height: 40px;
+    }
+
+    20%{
+        width:                      40px;
+        height:                     40px;
+        border-radius:              50%;
+    }
+
+    50%{
+        width:                      80px;
+        height:                     80px;
+    }
+
+    70%{
+        width:                      80px;
+        height:                     80px;
+        transform:                  translate(-50%, 100px);
+    }
+
+    100%{
+        transform:                  translate(-50%, -100px);
+    }
+}
+
+@keyframes enter-bubble-background {
+    to{
+        transform:          scale(1.4143);
+    }
+}
+
+@keyframes exit-bubble-background {
+    from{
+        transform:   scale(1.4143);
+    }
+    to{
+        transform:   scale(0);
+    }
+}
+
+@keyframes bubble-trail {
+    from{
+        width:      100vmax;
+        height:     100vmax;
+        transform:  translate(-50%,-50%) scale(0);
+    }
+
+    30%{
+        opacity:    1;
+    }
+
+    99%{
+        width:      100vmax;
+        height:     100vmax;
+        transform:  translate(-50%,-50%) scale(1.4143);
+        opacity:    0;
+    }
+
+    to{
+        display: none;
+    }
+}
+
+@keyframes enter-messageForm {
+
+    from{
+        transform: translateY(100%);
+    }
+    
+    to{
+        transform: translateY(0%);
+    }
+}
