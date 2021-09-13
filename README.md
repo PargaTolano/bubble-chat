@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Bubble Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Text messaging app with random strangers
 
 ## Available Scripts
 
