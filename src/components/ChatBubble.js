@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState }    from 'react';
 import { useConnectSocket } from '../hooks/useConnectSocket';
+import { messageService } from '../service/messageService';
 
 import styles   from '../styles/ChatBubble.module.css';
 
@@ -13,7 +14,7 @@ export const ChatBubble = () => {
         sendMessage,
         message,
         setMessage,
-    } = useConnectSocket('http://localhost:8080/websocket-message-app');
+    } = useConnectSocket('http://localhost:8080/test-ws');
 
     const onClickToggle = () => {
         setReversed(false);
