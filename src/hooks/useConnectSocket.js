@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { messageService }   
     from '../service/messageService';
 export const useConnectSocket = (endpoint)=>{
+
+    const bottomMessageRef = useRef(null);
 
     const [messages, setMessages] = useState([]);
     const [message, setMessage]   = useState();
 
     useEffect(()=> {
         messageService.connect(endpoint, ()=>{
-            messageService.subscribeAll((message)=>{
-
-                const data = JSON.parse(message.body);
-                console.log(data);
+            messageService.subscribeAll((outMessage)=>{
+                let data = JSON.parse(outMessage.body);
+                setMessages( msgs => [...msgs, data] );
+                bottomMessageRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
             });
         });
         
@@ -26,6 +28,7 @@ export const useConnectSocket = (endpoint)=>{
         messages, 
         sendMessage, 
         message,
-        setMessage
+        setMessage,
+        bottomMessageRef
     };
 };

@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState }    from 'react';
+import React, { useRef, useState }    from 'react';
 import { useConnectSocket } from '../hooks/useConnectSocket';
-import { messageService } from '../service/messageService';
 
 import styles   from '../styles/ChatBubble.module.css';
 
 export const ChatBubble = () => {
 
     const [reversed, setReversed] = useState(false);
-    const ref = useRef(null);
+    const ref           = useRef(null);
 
     const { 
         messages, 
         sendMessage,
         message,
         setMessage,
+        bottomMessageRef
     } = useConnectSocket('http://localhost:8080/test-ws');
 
     const onClickToggle = () => {
@@ -43,23 +43,21 @@ export const ChatBubble = () => {
                 } 
             >   
                 <div className={styles.backgroundBubble} ></div>
-                <div className={styles.messageContainer}>
-                    {
-                        messages.map((v,i)=>{
-
-                            console.log(`#########MENSAJE#########`);
-                            console.log(v);
-                            console.log(`#########################`);
-
-                            return (
-                                <div key={i} className={styles.message}>
-                                    {v.message}
+                <div className={styles.messageContainerWrapper}>
+                    <div className={styles.messageContainer}>
+                        {
+                            messages.map((v,i)=>
+                                <div
+                                    key={i} 
+                                    className={`${styles.message} ${v.from==='banana' ? styles.mine : styles.other }`}
+                                >
+                                    {v.content}
                                 </div>
-                            );
-                        })
-                    }
+                            )
+                        }
+                        <div ref={bottomMessageRef}></div>
+                    </div>
                 </div>
-                
                 <form 
                     onSubmit        = { onSubmit }
                     className       = { styles.messageForm }

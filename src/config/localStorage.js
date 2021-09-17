@@ -1,0 +1,1 @@
+export const authTokenKey = 'bubble-chat-auth';
