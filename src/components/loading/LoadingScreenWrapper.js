@@ -2,17 +2,23 @@ import React, { useState }  from 'react';
 import { AnimatePresence }  from 'framer-motion'
 import LoadingScreen        from './LoadingScreen'
 
-export const LoadingScreenWrapper = ({loading}) => {
+import { useLoadingScreen } from '../../hooks/useLoadingScreen';
+import { globals } from '../../config/globals';
 
-    const [playing, setPlaying] = useState(false);
+export const LoadingScreenWrapper = (props) => {
+
+    const {
+        playing,
+        setPlaying,
+    } = useLoadingScreen();
 
     return (
         <AnimatePresence>
             { 
-                ( playing || loading ) 
+                ( playing || globals.loading.get ) 
                 && 
                 <LoadingScreen 
-                    loading     = { loading }
+                    loading     = { globals.loading.get }
                     setPlaying  = { setPlaying }
                 /> 
             }

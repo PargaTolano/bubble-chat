@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 
 import Lottie from 'react-lottie';
 
@@ -57,7 +57,7 @@ export const LoadingScreen = ({loading, setPlaying}) => {
                 height  = { 300 } 
                 width   = { 300 }
                 isClickToPauseDisabled={true}
-                segments={[0, 88]}
+                segments={[0, 87]}
             /> 
             
             :
@@ -77,7 +77,6 @@ export const LoadingScreen = ({loading, setPlaying}) => {
             />
         }
         </motion.section>
-        
     )
 }
 
